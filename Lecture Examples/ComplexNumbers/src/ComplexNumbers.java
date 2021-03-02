@@ -32,12 +32,21 @@ public class ComplexNumbers {
         return "(" + getReal() + "," + getImaginary() + "i)";
     }
 
-    //@Override
-    public boolean equals(ComplexNumbers cNum) {
-        if((getImaginary() == cNum.getImaginary()) && (getReal() == cNum.getReal()))
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
             return true;
+
+        if(obj instanceof ComplexNumbers) {
+            if(((ComplexNumbers) obj).getReal() == this.getReal() &&
+            ((ComplexNumbers) obj).getImaginary() == this.getImaginary())
+                return true;
+            else
+                return false;
+        }
         else
             return false;
+
     }
 
     public static void main(String[] args) {
@@ -50,6 +59,23 @@ public class ComplexNumbers {
 
         String complexStr = c1.toString();
         System.out.println("c1 = " + complexStr);
+
+        complexStr = c2.toString();
+        System.out.println("c2 = " + complexStr);
+
+        if(c1.equals(c2))
+            System.out.println("c1 and c2 are equal");
+        else
+            System.out.println("c1 and c2 are NOT equal");
+
+        c2.setImaginary(7);
+        c2.setReal(3);
+
+        complexStr = c1.toString();
+        System.out.println("c1 = " + complexStr);
+
+        complexStr = c2.toString();
+        System.out.println("c2 = " + complexStr);
 
         if(c1.equals(c2))
             System.out.println("c1 and c2 are equal");
